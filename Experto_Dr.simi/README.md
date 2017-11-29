@@ -1,1 +1,0 @@
-Experto_Dr.simi
