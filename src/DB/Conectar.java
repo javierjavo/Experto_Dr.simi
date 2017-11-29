@@ -2,6 +2,7 @@ package DB;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.*;
 /**
  *
  * @author javie
@@ -20,7 +21,7 @@ public class Conectar {
             Class.forName(driver);
             conn = DriverManager.getConnection(url,user,pass);
             if(conn != null){
-                System.out.println("si jala");
+                System.out.println("conectado");
             }
         }catch(ClassNotFoundException e){}
     }
@@ -32,4 +33,9 @@ public class Conectar {
     public void desconectar(){
         conn = null;
     }
+    
+    public List<String> buscar(String busqueda){
+        return new ArrayList<>();
+    }
+    
 }

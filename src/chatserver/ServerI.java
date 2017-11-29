@@ -14,8 +14,7 @@ public interface ServerI extends Remote {
     public void add_sintoma(String sintoma)throws RemoteException;  
     public void add_signo(String signo)throws RemoteException;  
     public void add_enfermedad(String enfermedad,String sintomas, String signos)throws RemoteException;   
-    public List<String> get_sintomas()throws RemoteException;   
-   
-
+    public List<String> get_sintomas()throws RemoteException; 
+    public List<String> get_signos()throws RemoteException; 
     
 }

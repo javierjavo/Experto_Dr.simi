@@ -42,6 +42,15 @@ private boolean isConnected;
                 server.login(client);
                 jBtnSend.setVisible(true);
                 isConnected = true;
+                List<String> sint = server.get_sintomas();
+                List<String> sign = server.get_signos();
+                for(String a : sint){
+                    jComboBoxSintomas.addItem(a);
+                }
+                for(String a : sign){
+                    jComboBoxSignos.addItem(a);
+                }
+                
             } catch (MalformedURLException | NotBoundException | RemoteException e) {
                 JOptionPane.showMessageDialog(this, "Error, no se pudo conectar.");
             }
@@ -124,10 +133,6 @@ private boolean isConnected;
         jLabel3.setText("Sintomas");
 
         jLabel4.setText("Signos");
-
-        jComboBoxSintomas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBoxSignos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButtonSintomas.setText("Agregar");
 

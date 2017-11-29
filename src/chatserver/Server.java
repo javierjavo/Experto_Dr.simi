@@ -8,16 +8,18 @@ import chatclient.ClientI;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Server  extends UnicastRemoteObject implements ServerI  {
     int clientesConectados = 0;
     private ArrayList<ClientI> clients;
     private final String SQL_INSERT_SINTOMAS = "INSERT INTO sintomas (sintoma) VALUES(?)";
-    private final String SQL_INSERT_SIGNOS = "INSERT INTO signos (signos) VALUES(?)"; 
+    private final String SQL_INSERT_SIGNOS = "INSERT INTO signos (signos) VALUES(?)";
+    
     private PreparedStatement PS; //Variables SQL
     Conectar con;
     
@@ -110,7 +112,32 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
 
     @Override
     public List<String> get_sintomas() throws RemoteException {
+        List<String> enfermedad = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM sintomas";
+            ResultSet rs = con.GetConnection().prepareStatement(sql).executeQuery();
+            while(rs.next()){
+                enfermedad.add(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return enfermedad;
+    }
+
+    @Override
+    public List<String> get_signos() throws RemoteException {
+        List<String> enfermedad = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM signos";
+            ResultSet rs = con.GetConnection().prepareStatement(sql).executeQuery();
+            while(rs.next()){
+                enfermedad.add(rs.getString(2));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        return new ArrayList<>();
+        return enfermedad;
     }
 }

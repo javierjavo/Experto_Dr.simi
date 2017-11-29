@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.InetAddress;
+import java.sql.SQLException;
 
 public class login extends javax.swing.JFrame {
 
@@ -79,6 +80,8 @@ public class login extends javax.swing.JFrame {
                 this.dispose();
             } catch (UnknownHostException ex) {
                 Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
             

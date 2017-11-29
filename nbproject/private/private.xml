@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/javie/Documents/NetBeansProjects/DrSimiRMI/src/chatserver/Server.java</file>
+            <file>file:/C:/Users/javie/Documents/NetBeansProjects/DrSimiRMI/Experto_Dr.simi/src/chatserver/Server.java</file>
+            <file>file:/C:/Users/javie/Documents/NetBeansProjects/DrSimiRMI/Experto_Dr.simi/src/chatserver/ServerI.java</file>
+            <file>file:/C:/Users/javie/Documents/NetBeansProjects/DrSimiRMI/Experto_Dr.simi/src/DB/Conectar.java</file>
+            <file>file:/C:/Users/javie/Documents/NetBeansProjects/DrSimiRMI/Experto_Dr.simi/src/chatclient/ClientUI.java</file>
         </group>
     </open-files>
 </project-private>
