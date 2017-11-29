@@ -7,16 +7,23 @@ import java.util.ArrayList;
 import chatclient.ClientI;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Server  extends UnicastRemoteObject implements ServerI  {
     int clientesConectados = 0;
     private ArrayList<ClientI> clients;
+    private final String SQL_INSERT_SINTOMAS = "INSERT INTO sintomas (sintoma) VALUES(?)";
+    private final String SQL_INSERT_SIGNOS = "INSERT INTO signos (signos) VALUES(?)"; 
+    private PreparedStatement PS; //Variables SQL
     Conectar con;
     
-    public Server() throws RemoteException {
+    public Server() throws RemoteException, SQLException {
+       PS = null;
+       con = new Conectar();
        clients = new ArrayList<>();
     }
 
@@ -66,7 +73,34 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
 
     @Override
     public void add_sintoma(String sintoma) throws RemoteException {
-        
+        try {
+            //Establecer coneccion e insertar en la tabla correspondiente
+            PS = con.GetConnection().prepareStatement(SQL_INSERT_SINTOMAS);
+            PS.setString(1, sintoma);
+            int res = PS.executeUpdate();
+            //Confirmar el update a la DB
+            if(res > 0){
+                System.out.println("Registro exitoso");
+            }
+        } catch (SQLException e){
+            System.err.println("Error al guardar en la DB: " + e.getMessage());
+        }
+    }
+    
+    @Override
+    public void add_signo(String signo) throws RemoteException {
+        try {
+            //Establecer coneccion e insertar en la tabla correspondiente
+            PS = con.GetConnection().prepareStatement(SQL_INSERT_SIGNOS);
+            PS.setString(1, signo);
+            int res = PS.executeUpdate();
+            //Confirmar el update a la DB
+            if(res > 0){
+                System.out.println("Registro exitoso");
+            }
+        } catch (SQLException e){
+            System.err.println("Error al guardar en la DB: " + e.getMessage());
+        }
     }
 
     @Override
