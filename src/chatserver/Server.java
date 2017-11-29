@@ -5,20 +5,19 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import chatclient.ClientI;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 
 public class Server  extends UnicastRemoteObject implements ServerI  {
     int clientesConectados = 0;
     private ArrayList<ClientI> clients;
     private final String SQL_INSERT_SINTOMAS = "INSERT INTO sintomas (sintoma) VALUES(?)";
     private final String SQL_INSERT_SIGNOS = "INSERT INTO signos (signos) VALUES(?)";
+    private final String SQL_INSERT_ENFERMEDAD = "INSERT INTO enfermedades (enfermedad,sintomas,signos)VALUES(?,?,?)";
     
     private PreparedStatement PS; //Variables SQL
     Conectar con;
@@ -48,13 +47,37 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
 
     @Override
     public void busqueda_principal(ClientI c, List<String> sintomas, List<String> signos) throws RemoteException {
+        List<String> enfermedades = new ArrayList<>();
+        Map<Integer, String> treeMap = new TreeMap<Integer, String>();
+        
         try {
             //hago la busqueda
-            con = new Conectar();
-            Connection reg = con.GetConnection();
-            //termino la busqueda y la guardo en una lista
-            List<String> enfermedades = new ArrayList<>();
-            enfermedades.add("toda la caca que encontro el la db");
+            String sql = "SELECT * FROM enfermedades";
+            ResultSet rs = con.GetConnection().prepareStatement(sql).executeQuery();
+            while(rs.next()){
+                int peso=0;
+                String sin[] = rs.getString(3).split(":");
+                String sig[] = rs.getString(4).split(":");
+                
+                for(String si : sin){
+                    if(sintomas.contains(si)){
+                        peso++;
+                    }
+                }
+                for(String s : sig){
+                    if(sintomas.contains(s)){
+                        peso++;
+                    }
+                }
+                if(peso>1)
+                    treeMap.put(peso, rs.getString(2));
+            }
+            Iterator<Integer> it = treeMap.keySet().iterator();
+            while(it.hasNext()){
+              Integer key = it.next();
+              System.out.println("Clave: " + key + " -> Valor: " + treeMap.get(key));
+              enfermedades.add(treeMap.get(key));
+            }
             //ahora presento los datos al cliente solisitante
             c.mostrar_deduccion(enfermedades, sintomas, signos, 1);
         } catch (SQLException ex) {
@@ -65,7 +88,9 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
     @Override
     public void busqueda_clientes(ClientI c, List<String> sintomas, List<String> signos) throws RemoteException {
         //hago la busqueda en os clientes o internet o lo que sea
-        
+        for(ClientI client : clients){
+            client.busqueda_local(sintomas, signos);
+        }
         //termino la busqueda y la guardo en una lista
         List<String> enfermedades = new ArrayList<>();
         enfermedades.add("toda la caca que encontro en los clientes o internet");
@@ -86,6 +111,8 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
             }
         } catch (SQLException e){
             System.err.println("Error al guardar en la DB: " + e.getMessage());
+        }finally{
+            PS = null;
         }
     }
     
@@ -102,12 +129,28 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
             }
         } catch (SQLException e){
             System.err.println("Error al guardar en la DB: " + e.getMessage());
+        }finally{
+            PS = null;
         }
     }
 
     @Override
     public void add_enfermedad(String enfermedad, String sintomas, String signos) throws RemoteException {
-        
+        try {
+            PS = con.GetConnection().prepareStatement(SQL_INSERT_ENFERMEDAD);
+            PS.setString(1, enfermedad);
+            PS.setString(2, sintomas);
+            PS.setString(3, signos);
+            int rs = PS.executeUpdate();
+            if(rs > 0){
+                System.out.println("Registro exitoso");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            PS = null;
+        }
     }
 
     @Override

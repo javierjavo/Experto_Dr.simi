@@ -46,9 +46,11 @@ private boolean isConnected;
                 List<String> sign = server.get_signos();
                 for(String a : sint){
                     jComboBoxSintomas.addItem(a);
+                    jcb_NE_Sin.addItem(a);
                 }
                 for(String a : sign){
                     jComboBoxSignos.addItem(a);
+                    jcb_NE_Sig.addItem(a);
                 }
                 
             } catch (MalformedURLException | NotBoundException | RemoteException e) {
@@ -119,14 +121,14 @@ private boolean isConnected;
         jTextArea2.setColumns(20);
         jTextArea2.setRows(2);
         jTextArea2.setTabSize(4);
-        jTextArea2.setText("llanto,mucha caca,penejes");
+        jTextArea2.setText("llanto:mucha caca:penejes");
         jTextArea2.setWrapStyleWord(true);
         jTextArea2.setName("InSintomas"); // NOI18N
         jScrollPane4.setViewportView(jTextArea2);
 
         jTextArea3.setColumns(20);
         jTextArea3.setRows(5);
-        jTextArea3.setText("llanto,mucha caca,penejes");
+        jTextArea3.setText("llanto:mucha caca:penejes");
         jTextArea3.setName("inSignos"); // NOI18N
         jScrollPane5.setViewportView(jTextArea3);
 
@@ -159,10 +161,11 @@ private boolean isConnected;
         jLabel2.setText("Agregar Nuevas Enfermedades");
 
         jButton1.setText("Agregar Nueva Enfermedad");
-
-        jcb_NE_Sin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jcb_NE_Sig.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Sintomas");
 
@@ -381,6 +384,18 @@ private boolean isConnected;
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonANSigActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String e = jtf_NuevaEnfermedad.getText();
+            String sin = jTextArea1.getText();
+            String sig = jTextArea4.getText(); 
+            if( e.length() > 0 )
+                server.add_enfermedad(e, sin, sig);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

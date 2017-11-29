@@ -222,7 +222,7 @@
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="2"/>
             <Property name="tabSize" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="llanto,mucha caca,penejes"/>
+            <Property name="text" type="java.lang.String" value="llanto:mucha caca:penejes"/>
             <Property name="wrapStyleWord" type="boolean" value="true"/>
             <Property name="name" type="java.lang.String" value="InSintomas" noResource="true"/>
           </Properties>
@@ -240,7 +240,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="llanto,mucha caca,penejes"/>
+            <Property name="text" type="java.lang.String" value="llanto:mucha caca:penejes"/>
             <Property name="name" type="java.lang.String" value="inSignos" noResource="true"/>
           </Properties>
         </Component>
@@ -326,16 +326,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Nueva Enfermedad"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcb_NE_Sin">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
@@ -345,12 +343,7 @@
     <Component class="javax.swing.JComboBox" name="jcb_NE_Sig">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>
