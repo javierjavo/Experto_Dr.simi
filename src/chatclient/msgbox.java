@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class msgbox extends javax.swing.JFrame {
     private ServerI server;
-    private ClientI client;
+    private ClientI client, cserver;
     private List<String> sintomas, signos, Enfermedades;
     private int estado;
     
