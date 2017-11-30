@@ -48,8 +48,7 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
     @Override
     public void busqueda_principal(ClientI c, List<String> sintomas, List<String> signos) throws RemoteException {
         List<String> enfermedades = new ArrayList<>();
-        Map<Integer, String> treeMap = new TreeMap<Integer, String>();
-        
+        Map<Integer, String> treeMap = new TreeMap<>();
         try {
             //hago la busqueda
             String sql = "SELECT * FROM enfermedades";
@@ -93,14 +92,13 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
     
     @Override
     public void busqueda_clientes(ClientI c, List<String> sintomas, List<String> signos) throws RemoteException {
+        List<String> enfermedades = new ArrayList<>();
         //hago la busqueda en os clientes o internet o lo que sea
         for(ClientI client : clients){
-            client.busqueda_local(sintomas, signos);
+            List<String> aux = client.busqueda_local(sintomas, signos);
+            enfermedades.addAll(aux);
         }
-        //termino la busqueda y la guardo en una lista
-        List<String> enfermedades = new ArrayList<>();
-        enfermedades.add("toda la caca que encontro en los clientes o internet");
-        //ahora presento los datos al cliente solisitante
+        
         c.mostrar_deduccion(enfermedades, sintomas, signos, 0);
     }
 
