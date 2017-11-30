@@ -72,9 +72,9 @@ private boolean isConnected;
 
         jBtnSend = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jTextArea_DE_Sin = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        jTextArea_DE_Sig = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jComboBoxSintomas = new javax.swing.JComboBox<>();
@@ -95,12 +95,12 @@ private boolean isConnected;
         jLabel7 = new javax.swing.JLabel();
         jtf_NuevaEnfermedad = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_NE_Sin = new javax.swing.JButton();
+        jButton_NE_Sig = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTextArea_NE_Sin = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        jTextArea_NE_Sig = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
@@ -118,27 +118,37 @@ private boolean isConnected;
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(2);
-        jTextArea2.setTabSize(4);
-        jTextArea2.setText("llanto:mucha caca:penejes");
-        jTextArea2.setWrapStyleWord(true);
-        jTextArea2.setName("InSintomas"); // NOI18N
-        jScrollPane4.setViewportView(jTextArea2);
+        jTextArea_DE_Sin.setColumns(20);
+        jTextArea_DE_Sin.setRows(2);
+        jTextArea_DE_Sin.setTabSize(4);
+        jTextArea_DE_Sin.setWrapStyleWord(true);
+        jTextArea_DE_Sin.setFocusable(false);
+        jTextArea_DE_Sin.setName("InSintomas"); // NOI18N
+        jScrollPane4.setViewportView(jTextArea_DE_Sin);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("llanto:mucha caca:penejes");
-        jTextArea3.setName("inSignos"); // NOI18N
-        jScrollPane5.setViewportView(jTextArea3);
+        jTextArea_DE_Sig.setColumns(20);
+        jTextArea_DE_Sig.setRows(5);
+        jTextArea_DE_Sig.setFocusable(false);
+        jTextArea_DE_Sig.setName("inSignos"); // NOI18N
+        jScrollPane5.setViewportView(jTextArea_DE_Sig);
 
         jLabel3.setText("Sintomas");
 
         jLabel4.setText("Signos");
 
         jButtonSintomas.setText("Agregar");
+        jButtonSintomas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSintomasActionPerformed(evt);
+            }
+        });
 
         jButtonSignos.setText("Agregar");
+        jButtonSignos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSignosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Diagnostico de Enfermedades");
@@ -176,17 +186,29 @@ private boolean isConnected;
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("Agregar Nuevos Sintomas y Signos");
 
-        jButton2.setText("Agregar");
+        jButton_NE_Sin.setText("Agregar");
+        jButton_NE_Sin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NE_SinActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Agregar");
+        jButton_NE_Sig.setText("Agregar");
+        jButton_NE_Sig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NE_SigActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextArea_NE_Sin.setColumns(20);
+        jTextArea_NE_Sin.setRows(5);
+        jTextArea_NE_Sin.setFocusable(false);
+        jScrollPane1.setViewportView(jTextArea_NE_Sin);
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane2.setViewportView(jTextArea4);
+        jTextArea_NE_Sig.setColumns(20);
+        jTextArea_NE_Sig.setRows(5);
+        jTextArea_NE_Sig.setFocusable(false);
+        jScrollPane2.setViewportView(jTextArea_NE_Sig);
 
         jLabel9.setText("Sintomas");
 
@@ -254,8 +276,8 @@ private boolean isConnected;
                                         .addGap(33, 33, 33)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton3)))
+                                    .addComponent(jButton_NE_Sin)
+                                    .addComponent(jButton_NE_Sig)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jButtonANSint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -316,12 +338,12 @@ private boolean isConnected;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jcb_NE_Sin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton_NE_Sin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jcb_NE_Sig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton_NE_Sig))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -339,8 +361,8 @@ private boolean isConnected;
         List<String> sintomas;
         List<String> signos;
 
-        sintomas = Arrays.asList(jTextArea2.getText().split(":"));
-        signos = Arrays.asList(jTextArea3.getText().split(":"));
+        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split(":"));
+        signos = Arrays.asList(jTextArea_DE_Sig.getText().split(":"));
         
         server.busqueda_principal(client, sintomas, signos);
     } catch (RemoteException ex) {
@@ -371,6 +393,7 @@ private boolean isConnected;
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jTextFieldSintoma.setText("");
     }//GEN-LAST:event_jButtonANSintActionPerformed
 
     private void jButtonANSigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonANSigActionPerformed
@@ -383,30 +406,74 @@ private boolean isConnected;
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jTextFieldSigno.setText("");
     }//GEN-LAST:event_jButtonANSigActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String e = jtf_NuevaEnfermedad.getText();
-            String sin = jTextArea1.getText();
-            String sig = jTextArea4.getText(); 
+            String sin = jTextArea_NE_Sin.getText();
+            String sig = jTextArea_NE_Sig.getText(); 
             if( e.length() > 0 )
                 server.add_enfermedad(e, sin, sig);
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+        jTextArea_NE_Sin.setText("");
+        jTextArea_NE_Sig.setText("");
+        jtf_NuevaEnfermedad.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonSintomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSintomasActionPerformed
+        // TODO add your handling code here:
+        String str = jTextArea_DE_Sin.getText();
+        String sin = jComboBoxSintomas.getSelectedItem().toString();
+        if(str.length() <= 0)
+            jTextArea_DE_Sin.setText(sin);
+        else
+            jTextArea_DE_Sin.setText(str + ":" + sin);
+    }//GEN-LAST:event_jButtonSintomasActionPerformed
+
+    private void jButtonSignosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignosActionPerformed
+        // TODO add your handling code here:
+        String str = jTextArea_DE_Sig.getText();
+        String sin = jComboBoxSignos.getSelectedItem().toString();
+        if(str.length() <= 0)
+            jTextArea_DE_Sig.setText(sin);
+        else
+            jTextArea_DE_Sig.setText(str + ":" + sin);
+    }//GEN-LAST:event_jButtonSignosActionPerformed
+
+    private void jButton_NE_SinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SinActionPerformed
+        // TODO add your handling code here:
+        String str = jTextArea_NE_Sin.getText();
+        String sin = jcb_NE_Sin.getSelectedItem().toString();
+        if(str.length() <= 0)
+            jTextArea_NE_Sin.setText(sin);
+        else
+            jTextArea_NE_Sin.setText(str + ":" + sin);
+    }//GEN-LAST:event_jButton_NE_SinActionPerformed
+
+    private void jButton_NE_SigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SigActionPerformed
+        // TODO add your handling code here:
+        String str = jTextArea_NE_Sig.getText();
+        String sin = jcb_NE_Sig.getSelectedItem().toString();
+        if(str.length() <= 0)
+            jTextArea_NE_Sig.setText(sin);
+        else
+            jTextArea_NE_Sig.setText(str + ":" + sin);
+    }//GEN-LAST:event_jButton_NE_SigActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnSend;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonANSig;
     private javax.swing.JButton jButtonANSint;
     private javax.swing.JButton jButtonSignos;
     private javax.swing.JButton jButtonSintomas;
+    private javax.swing.JButton jButton_NE_Sig;
+    private javax.swing.JButton jButton_NE_Sin;
     private javax.swing.JComboBox<String> jComboBoxSignos;
     private javax.swing.JComboBox<String> jComboBoxSintomas;
     private javax.swing.JLabel jLabel1;
@@ -423,10 +490,10 @@ private boolean isConnected;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea_DE_Sig;
+    private javax.swing.JTextArea jTextArea_DE_Sin;
+    private javax.swing.JTextArea jTextArea_NE_Sig;
+    private javax.swing.JTextArea jTextArea_NE_Sin;
     private javax.swing.JTextField jTextFieldSigno;
     private javax.swing.JTextField jTextFieldSintoma;
     private javax.swing.JComboBox<String> jcb_NE_Sig;

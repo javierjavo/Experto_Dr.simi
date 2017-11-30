@@ -59,6 +59,8 @@ public class msgbox extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        Resultado.setFocusable(false);
+
         jLabel1.setText("tu enfermedad deberia ser");
 
         jButton1.setText("Si Gracias");
