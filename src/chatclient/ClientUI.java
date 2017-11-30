@@ -119,16 +119,16 @@ private boolean isConnected;
         });
 
         jTextArea_DE_Sin.setColumns(20);
+        jTextArea_DE_Sin.setLineWrap(true);
         jTextArea_DE_Sin.setRows(2);
         jTextArea_DE_Sin.setTabSize(4);
         jTextArea_DE_Sin.setWrapStyleWord(true);
-        jTextArea_DE_Sin.setFocusable(false);
         jTextArea_DE_Sin.setName("InSintomas"); // NOI18N
         jScrollPane4.setViewportView(jTextArea_DE_Sin);
 
         jTextArea_DE_Sig.setColumns(20);
+        jTextArea_DE_Sig.setLineWrap(true);
         jTextArea_DE_Sig.setRows(5);
-        jTextArea_DE_Sig.setFocusable(false);
         jTextArea_DE_Sig.setName("inSignos"); // NOI18N
         jScrollPane5.setViewportView(jTextArea_DE_Sig);
 
@@ -201,13 +201,13 @@ private boolean isConnected;
         });
 
         jTextArea_NE_Sin.setColumns(20);
+        jTextArea_NE_Sin.setLineWrap(true);
         jTextArea_NE_Sin.setRows(5);
-        jTextArea_NE_Sin.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea_NE_Sin);
 
         jTextArea_NE_Sig.setColumns(20);
+        jTextArea_NE_Sig.setLineWrap(true);
         jTextArea_NE_Sig.setRows(5);
-        jTextArea_NE_Sig.setFocusable(false);
         jScrollPane2.setViewportView(jTextArea_NE_Sig);
 
         jLabel9.setText("Sintomas");
@@ -361,8 +361,8 @@ private boolean isConnected;
         List<String> sintomas;
         List<String> signos;
 
-        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split(":"));
-        signos = Arrays.asList(jTextArea_DE_Sig.getText().split(":"));
+        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split("."));
+        signos = Arrays.asList(jTextArea_DE_Sig.getText().split("."));
         
         server.busqueda_principal(client, sintomas, signos);
     } catch (RemoteException ex) {
@@ -431,7 +431,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_DE_Sin.setText(sin);
         else
-            jTextArea_DE_Sin.setText(str + ":" + sin);
+            jTextArea_DE_Sin.setText(str + "." + sin);
     }//GEN-LAST:event_jButtonSintomasActionPerformed
 
     private void jButtonSignosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignosActionPerformed
@@ -441,7 +441,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_DE_Sig.setText(sin);
         else
-            jTextArea_DE_Sig.setText(str + ":" + sin);
+            jTextArea_DE_Sig.setText(str + "." + sin);
     }//GEN-LAST:event_jButtonSignosActionPerformed
 
     private void jButton_NE_SinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SinActionPerformed
@@ -451,7 +451,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_NE_Sin.setText(sin);
         else
-            jTextArea_NE_Sin.setText(str + ":" + sin);
+            jTextArea_NE_Sin.setText(str + "." + sin);
     }//GEN-LAST:event_jButton_NE_SinActionPerformed
 
     private void jButton_NE_SigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SigActionPerformed
@@ -461,7 +461,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_NE_Sig.setText(sin);
         else
-            jTextArea_NE_Sig.setText(str + ":" + sin);
+            jTextArea_NE_Sig.setText(str + "." + sin);
     }//GEN-LAST:event_jButton_NE_SigActionPerformed
 
 

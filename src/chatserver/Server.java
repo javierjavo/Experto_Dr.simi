@@ -55,8 +55,8 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
             ResultSet rs = con.GetConnection().prepareStatement(sql).executeQuery();
             while(rs.next()){
                 int peso=0;
-                String sin[] = rs.getString(3).split(":");
-                String sig[] = rs.getString(4).split(":");
+                String sin[] = rs.getString(3).split(".");
+                String sig[] = rs.getString(4).split(".");
                 
                 for(String si : sin){
                     System.out.println(sintomas);
