@@ -60,17 +60,22 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
                 String sig[] = rs.getString(4).split(":");
                 
                 for(String si : sin){
+                    System.out.println(sintomas);
                     if(sintomas.contains(si)){
                         peso++;
                     }
                 }
-                for(String s : sig){
-                    if(sintomas.contains(s)){
+                for(String sg : sig){
+                    System.out.println(signos);
+                    if(signos.contains(sg)){
                         peso++;
                     }
                 }
-                if(peso>1)
+                System.out.println(peso);
+                if(peso>0)
                     treeMap.put(peso, rs.getString(2));
+                else
+                    treeMap.put(peso, "no encontrado");
             }
             Iterator<Integer> it = treeMap.keySet().iterator();
             while(it.hasNext()){
@@ -78,6 +83,7 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
               System.out.println("Clave: " + key + " -> Valor: " + treeMap.get(key));
               enfermedades.add(treeMap.get(key));
             }
+            Collections.reverse(enfermedades);
             //ahora presento los datos al cliente solisitante
             c.mostrar_deduccion(enfermedades, sintomas, signos, 1);
         } catch (SQLException ex) {

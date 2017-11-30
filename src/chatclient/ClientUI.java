@@ -339,8 +339,8 @@ private boolean isConnected;
         List<String> sintomas;
         List<String> signos;
 
-        sintomas = Arrays.asList(jTextArea2.getText().split(","));
-        signos = Arrays.asList(jTextArea3.getText().split(","));
+        sintomas = Arrays.asList(jTextArea2.getText().split(":"));
+        signos = Arrays.asList(jTextArea3.getText().split(":"));
         
         server.busqueda_principal(client, sintomas, signos);
     } catch (RemoteException ex) {
