@@ -30,7 +30,7 @@ public class client extends UnicastRemoteObject implements ClientI
     }
 
     @Override
-    public List<String> busqueda_local(List<String> sintomas, List<String> signos) throws RemoteException {
+    public List<String> busqueda_local(List<String> sintomas, List<String> signos, String tratamiento) throws RemoteException {
         List<String> enfermedades = new ArrayList<>();
         Map<Integer, String> treeMap = new TreeMap<>();
         try {
@@ -41,6 +41,7 @@ public class client extends UnicastRemoteObject implements ClientI
                 int peso=0;
                 String sin[] = rs.getString(3).split(".");
                 String sig[] = rs.getString(4).split(".");
+                String trat = rs.getString(5);
                 
                 for(String si : sin){
                     System.out.println(sintomas);
@@ -75,8 +76,8 @@ public class client extends UnicastRemoteObject implements ClientI
     }
 
     @Override
-    public void mostrar_deduccion(List<String> Enfermedades,List<String> sintomas,List<String> signos, int busqueda) throws RemoteException {
-       new msgbox(this,Enfermedades,sintomas,signos, this.server, busqueda);
+    public void mostrar_deduccion(List<String> Enfermedades,List<String> sintomas,List<String> signos, String tratamiento, int busqueda) throws RemoteException {
+       new msgbox(this,Enfermedades,sintomas,signos,tratamiento, this.server, busqueda);
     }
 
 }

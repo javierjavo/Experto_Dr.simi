@@ -101,8 +101,13 @@ private boolean isConnected;
         jTextArea_NE_Sin = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea_NE_Sig = new javax.swing.JTextArea();
+        jb_Borrar_Signos = new javax.swing.JButton();
+        jb_Borrar_Sintomas = new javax.swing.JButton();
+        jb_NE_Bsig = new javax.swing.JButton();
+        jb_NE_BSin = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jta_Trat = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -123,12 +128,14 @@ private boolean isConnected;
         jTextArea_DE_Sin.setRows(2);
         jTextArea_DE_Sin.setTabSize(4);
         jTextArea_DE_Sin.setWrapStyleWord(true);
+        jTextArea_DE_Sin.setFocusable(false);
         jTextArea_DE_Sin.setName("InSintomas"); // NOI18N
         jScrollPane4.setViewportView(jTextArea_DE_Sin);
 
         jTextArea_DE_Sig.setColumns(20);
         jTextArea_DE_Sig.setLineWrap(true);
         jTextArea_DE_Sig.setRows(5);
+        jTextArea_DE_Sig.setFocusable(false);
         jTextArea_DE_Sig.setName("inSignos"); // NOI18N
         jScrollPane5.setViewportView(jTextArea_DE_Sig);
 
@@ -203,16 +210,48 @@ private boolean isConnected;
         jTextArea_NE_Sin.setColumns(20);
         jTextArea_NE_Sin.setLineWrap(true);
         jTextArea_NE_Sin.setRows(5);
+        jTextArea_NE_Sin.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea_NE_Sin);
 
         jTextArea_NE_Sig.setColumns(20);
         jTextArea_NE_Sig.setLineWrap(true);
         jTextArea_NE_Sig.setRows(5);
+        jTextArea_NE_Sig.setFocusable(false);
         jScrollPane2.setViewportView(jTextArea_NE_Sig);
 
-        jLabel9.setText("Sintomas");
+        jb_Borrar_Signos.setText("Borrar");
+        jb_Borrar_Signos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Borrar_SignosActionPerformed(evt);
+            }
+        });
 
-        jLabel10.setText("Signos");
+        jb_Borrar_Sintomas.setText("Borrar");
+        jb_Borrar_Sintomas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_Borrar_SintomasActionPerformed(evt);
+            }
+        });
+
+        jb_NE_Bsig.setText("Borrar");
+        jb_NE_Bsig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_NE_BsigActionPerformed(evt);
+            }
+        });
+
+        jb_NE_BSin.setText("Borrar");
+        jb_NE_BSin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_NE_BSinActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Tratamiento");
+
+        jta_Trat.setColumns(20);
+        jta_Trat.setRows(5);
+        jScrollPane3.setViewportView(jta_Trat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,88 +263,97 @@ private boolean isConnected;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jComboBoxSintomas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButtonSintomas))
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonSignos)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jScrollPane5)
-                                        .addComponent(jComboBoxSignos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(141, 141, 141)))
-                        .addGap(47, 47, 47))
+                                .addComponent(jButtonANSig, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldSigno, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButtonANSint)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldSintoma, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(123, 123, 123))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcb_NE_Sin, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_NE_Sin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jb_NE_BSin)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addGap(132, 132, 132))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton_NE_Sig)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jb_NE_Bsig))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcb_NE_Sig, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(8, 8, 8)
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jcb_NE_Sig, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jcb_NE_Sin, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtf_NuevaEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(33, 33, 33)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton_NE_Sin)
-                                    .addComponent(jButton_NE_Sig)))
+                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxSintomas, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonSintomas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jb_Borrar_Sintomas)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonSignos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jb_Borrar_Signos))
+                                    .addComponent(jComboBoxSignos, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonANSint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonANSig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton1)
+                                .addGap(34, 34, 34)
+                                .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldSintoma, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                        .addComponent(jTextFieldSigno, javax.swing.GroupLayout.Alignment.LEADING)))))
-                        .addContainerGap(12, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(141, 141, 141))
+                                .addComponent(jtf_NuevaEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addComponent(jLabel1)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -314,43 +362,50 @@ private boolean isConnected;
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSintomas)
-                    .addComponent(jButtonSignos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBtnSend, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel8)
+                    .addComponent(jButtonSignos)
+                    .addComponent(jb_Borrar_Signos)
+                    .addComponent(jb_Borrar_Sintomas))
                 .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonANSint)
                     .addComponent(jTextFieldSintoma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonANSig)
-                    .addComponent(jTextFieldSigno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(jTextFieldSigno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonANSig))
+                .addGap(19, 19, 19)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel7)
-                    .addComponent(jtf_NuevaEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel7)
+                            .addComponent(jtf_NuevaEnfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
                     .addComponent(jcb_NE_Sin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_NE_Sin))
+                    .addComponent(jcb_NE_Sig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jcb_NE_Sig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_NE_Sig))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton_NE_Sin)
+                    .addComponent(jButton_NE_Sig)
+                    .addComponent(jb_NE_Bsig)
+                    .addComponent(jb_NE_BSin))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -360,11 +415,13 @@ private boolean isConnected;
     try {
         List<String> sintomas;
         List<String> signos;
+        String trat;
 
-        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split("."));
-        signos = Arrays.asList(jTextArea_DE_Sig.getText().split("."));
+        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split(":"));
+        signos = Arrays.asList(jTextArea_DE_Sig.getText().split(":"));
+        trat = jta_Trat.getText();
         
-        server.busqueda_principal(client, sintomas, signos);
+        server.busqueda_principal(client, sintomas, signos, trat);
     } catch (RemoteException ex) {
         Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -413,15 +470,18 @@ private boolean isConnected;
         try {
             String e = jtf_NuevaEnfermedad.getText();
             String sin = jTextArea_NE_Sin.getText();
-            String sig = jTextArea_NE_Sig.getText(); 
+            String sig = jTextArea_NE_Sig.getText();
+            String trat = jta_Trat.getText();
             if( e.length() > 0 )
-                server.add_enfermedad(e, sin, sig);
+                server.add_tratamiento(trat);
+                server.add_enfermedad(e, sin, sig, trat);
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
         jTextArea_NE_Sin.setText("");
         jTextArea_NE_Sig.setText("");
         jtf_NuevaEnfermedad.setText("");
+        jta_Trat.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonSintomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSintomasActionPerformed
@@ -431,7 +491,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_DE_Sin.setText(sin);
         else
-            jTextArea_DE_Sin.setText(str + "." + sin);
+            jTextArea_DE_Sin.setText(str + ":" + sin);
     }//GEN-LAST:event_jButtonSintomasActionPerformed
 
     private void jButtonSignosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSignosActionPerformed
@@ -441,7 +501,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_DE_Sig.setText(sin);
         else
-            jTextArea_DE_Sig.setText(str + "." + sin);
+            jTextArea_DE_Sig.setText(str + ":" + sin);
     }//GEN-LAST:event_jButtonSignosActionPerformed
 
     private void jButton_NE_SinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SinActionPerformed
@@ -451,7 +511,7 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_NE_Sin.setText(sin);
         else
-            jTextArea_NE_Sin.setText(str + "." + sin);
+            jTextArea_NE_Sin.setText(str + ":" + sin);
     }//GEN-LAST:event_jButton_NE_SinActionPerformed
 
     private void jButton_NE_SigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NE_SigActionPerformed
@@ -461,8 +521,28 @@ private boolean isConnected;
         if(str.length() <= 0)
             jTextArea_NE_Sig.setText(sin);
         else
-            jTextArea_NE_Sig.setText(str + "." + sin);
+            jTextArea_NE_Sig.setText(str + ":" + sin);
     }//GEN-LAST:event_jButton_NE_SigActionPerformed
+
+    private void jb_Borrar_SintomasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Borrar_SintomasActionPerformed
+        // TODO add your handling code here:
+        jTextArea_DE_Sin.setText("");
+    }//GEN-LAST:event_jb_Borrar_SintomasActionPerformed
+
+    private void jb_Borrar_SignosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_Borrar_SignosActionPerformed
+        // TODO add your handling code here:
+        jTextArea_DE_Sig.setText("");
+    }//GEN-LAST:event_jb_Borrar_SignosActionPerformed
+
+    private void jb_NE_BSinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_NE_BSinActionPerformed
+        // TODO add your handling code here:
+        jTextArea_NE_Sin.setText("");
+    }//GEN-LAST:event_jb_NE_BSinActionPerformed
+
+    private void jb_NE_BsigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_NE_BsigActionPerformed
+        // TODO add your handling code here:
+        jTextArea_NE_Sig.setText("");
+    }//GEN-LAST:event_jb_NE_BsigActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -477,7 +557,6 @@ private boolean isConnected;
     private javax.swing.JComboBox<String> jComboBoxSignos;
     private javax.swing.JComboBox<String> jComboBoxSintomas;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -488,6 +567,7 @@ private boolean isConnected;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextArea jTextArea_DE_Sig;
@@ -496,8 +576,13 @@ private boolean isConnected;
     private javax.swing.JTextArea jTextArea_NE_Sin;
     private javax.swing.JTextField jTextFieldSigno;
     private javax.swing.JTextField jTextFieldSintoma;
+    private javax.swing.JButton jb_Borrar_Signos;
+    private javax.swing.JButton jb_Borrar_Sintomas;
+    private javax.swing.JButton jb_NE_BSin;
+    private javax.swing.JButton jb_NE_Bsig;
     private javax.swing.JComboBox<String> jcb_NE_Sig;
     private javax.swing.JComboBox<String> jcb_NE_Sin;
+    private javax.swing.JTextArea jta_Trat;
     private javax.swing.JTextField jtf_NuevaEnfermedad;
     // End of variables declaration//GEN-END:variables
 

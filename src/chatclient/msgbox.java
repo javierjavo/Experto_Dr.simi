@@ -20,6 +20,7 @@ public class msgbox extends javax.swing.JFrame {
     private ServerI server;
     private ClientI client, cserver;
     private List<String> sintomas, signos, Enfermedades;
+    private String tratamiento;
     private int estado;
     
     /** Creates new form msgbox
@@ -27,23 +28,26 @@ public class msgbox extends javax.swing.JFrame {
      * @param sintomas
      * @param signos
      * @param server
+     * @param tratamiento
      * @throws java.rmi.RemoteException */
-    public msgbox(ClientI c, List<String> Enfermedades,List<String> sintomas,List<String> signos, ServerI server, int busqueda) throws RemoteException {
+    public msgbox(ClientI c, List<String> Enfermedades,List<String> sintomas,List<String> signos, String tratamiento, ServerI server, int busqueda) throws RemoteException {
         initComponents();
         
         this.setVisible(true);
         this.server = server;
         this.sintomas = sintomas;
         this.signos = signos;
+        this.tratamiento = tratamiento;
         this.Enfermedades = Enfermedades;
         this.client = c;
         this.estado = busqueda;
         
-        if(Enfermedades.size()>0)
-            this.Resultado.setText(Enfermedades.get(0));
-        else{
+        if(Enfermedades.size()>0){
+            this.Resultado.setText(Enfermedades.get(0).split(";")[0]);
+            this.jta_Trat.setText(Enfermedades.get(0).split(";")[1]);
+        }else{
             if(busqueda == 1)
-                server.busqueda_clientes(c, sintomas, signos);
+                server.busqueda_clientes(c, sintomas, signos, tratamiento);
             this.dispose();
         }
     }
@@ -56,12 +60,15 @@ public class msgbox extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_Trat = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Resultado.setFocusable(false);
 
-        jLabel1.setText("tu enfermedad deberia ser");
+        jLabel1.setText("Tu enfermedad deberia ser:");
 
         jButton1.setText("Si Gracias");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,6 +84,13 @@ public class msgbox extends javax.swing.JFrame {
             }
         });
 
+        jta_Trat.setColumns(20);
+        jta_Trat.setRows(5);
+        jta_Trat.setFocusable(false);
+        jScrollPane1.setViewportView(jta_Trat);
+
+        jLabel2.setText("Tratamiento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,29 +98,38 @@ public class msgbox extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(Resultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(1, 1, 1)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -124,7 +147,7 @@ public class msgbox extends javax.swing.JFrame {
             if(this.estado == 1)
                 try {
                     //le ordeno buscar en los demas clientes (internet) y responderle al que pregunta
-                    this.server.busqueda_clientes(this.client, this.sintomas, this.signos);
+                    this.server.busqueda_clientes(this.client, this.sintomas, this.signos, this.tratamiento);
                 } catch (RemoteException ex) {
                     Logger.getLogger(msgbox.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -139,6 +162,9 @@ public class msgbox extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jta_Trat;
     // End of variables declaration//GEN-END:variables
 
 }
