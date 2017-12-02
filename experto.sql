@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2017 a las 01:25:57
+-- Tiempo de generación: 01-12-2017 a las 23:41:59
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -32,15 +32,20 @@ CREATE TABLE `enfermedades` (
   `id` int(11) NOT NULL,
   `enfermedad` text NOT NULL,
   `sintomas` text NOT NULL,
-  `signos` text NOT NULL
+  `signos` text NOT NULL,
+  `tratamiento` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `enfermedades`
 --
 
-INSERT INTO `enfermedades` (`id`, `enfermedad`, `sintomas`, `signos`) VALUES
-(1, 'prueba', 'llanto:mucha caca:penejes', 'llanto:mucha caca:penejes');
+INSERT INTO `enfermedades` (`id`, `enfermedad`, `sintomas`, `signos`, `tratamiento`) VALUES
+(1, 'prueba', 'llanto', '', ''),
+(2, 'prueba2', '', 'uñas largas', ''),
+(3, 'prueba3', 'dolor de cabeza', 'salpullido', ''),
+(4, 'pruebaTrat', 'dolor de panza', 'uñas largas', 'esto es una prueba'),
+(5, 'Gripe aviar', 'dolor de cabeza:mocos', 'nariz raspoza:manos sudorozas', 'Tomar paracetamol');
 
 -- --------------------------------------------------------
 
@@ -52,6 +57,17 @@ CREATE TABLE `signos` (
   `id` int(11) NOT NULL,
   `signos` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `signos`
+--
+
+INSERT INTO `signos` (`id`, `signos`) VALUES
+(1, 'uñas largas'),
+(2, 'salpullido'),
+(6, 'nariz raspoza'),
+(7, 'manchas'),
+(8, 'manos sudorozas');
 
 -- --------------------------------------------------------
 
@@ -69,7 +85,31 @@ CREATE TABLE `sintomas` (
 --
 
 INSERT INTO `sintomas` (`id`, `sintoma`) VALUES
-(1, 'asd');
+(1, 'llanto'),
+(2, 'dolor de cabeza'),
+(3, 'dolor de panza'),
+(7, 'mocos'),
+(8, 'dolor de pies'),
+(9, 'dolor de espalda');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tratamientos`
+--
+
+CREATE TABLE `tratamientos` (
+  `id` int(11) NOT NULL,
+  `tratamientos` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tratamientos`
+--
+
+INSERT INTO `tratamientos` (`id`, `tratamientos`) VALUES
+(1, 'esto es una prueba'),
+(2, 'Tomar paracetamol');
 
 --
 -- Índices para tablas volcadas
@@ -97,6 +137,12 @@ ALTER TABLE `sintomas`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indices de la tabla `tratamientos`
+--
+ALTER TABLE `tratamientos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -104,19 +150,25 @@ ALTER TABLE `sintomas`
 -- AUTO_INCREMENT de la tabla `enfermedades`
 --
 ALTER TABLE `enfermedades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `signos`
 --
 ALTER TABLE `signos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `sintomas`
 --
 ALTER TABLE `sintomas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `tratamientos`
+--
+ALTER TABLE `tratamientos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
