@@ -261,7 +261,7 @@ private boolean isConnected;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 239, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButtonANSig, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -298,7 +298,7 @@ private boolean isConnected;
                                         .addComponent(jb_NE_Bsig))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jcb_NE_Sig, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -412,22 +412,39 @@ private boolean isConnected;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSendActionPerformed
-    try {
-        List<String> sintomas;
-        List<String> signos;
-        String trat;
+        try {
+            List<String> sintomas;
+            List<String> signos;
+            String trat;
 
-        sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split(":"));
-        signos = Arrays.asList(jTextArea_DE_Sig.getText().split(":"));
-        trat = jta_Trat.getText();
-        
-        server.busqueda_principal(client, sintomas, signos, trat);
-    } catch (RemoteException ex) {
-        Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
-    }
-        
+            sintomas = Arrays.asList(jTextArea_DE_Sin.getText().split(":"));
+            signos = Arrays.asList(jTextArea_DE_Sig.getText().split(":"));
+            trat = jta_Trat.getText();
+
+            server.busqueda_principal(client, sintomas, signos, trat);
+        } catch (RemoteException ex) {
+            Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jBtnSendActionPerformed
 
+    private void updateContent() throws RemoteException{
+        jComboBoxSintomas.removeAllItems();
+        jComboBoxSignos.removeAllItems();
+        jcb_NE_Sin.removeAllItems();
+        jcb_NE_Sig.removeAllItems();
+        List<String> sint = server.get_sintomas();
+        List<String> sign = server.get_signos();
+        for(String a : sint){
+            jComboBoxSintomas.addItem(a);
+            jcb_NE_Sin.addItem(a);
+        }
+        for(String a : sign){
+            jComboBoxSignos.addItem(a);
+            jcb_NE_Sig.addItem(a);
+        }
+        
+    }
+    
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         System.out.println("Adios");
         try {
@@ -447,6 +464,7 @@ private boolean isConnected;
         String sintoma = jTextFieldSintoma.getText();
         try {
             server.add_sintoma(sintoma);
+            updateContent();
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -460,6 +478,7 @@ private boolean isConnected;
         String signo = jTextFieldSigno.getText();
         try {
             server.add_signo(signo);
+            updateContent();
         } catch (RemoteException ex) {
             Logger.getLogger(ClientUI.class.getName()).log(Level.SEVERE, null, ex);
         }

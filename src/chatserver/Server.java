@@ -61,20 +61,20 @@ public class Server  extends UnicastRemoteObject implements ServerI  {
                 String trat = rs.getString(5);
                 
                 for(String si : sin){
-                    System.out.println(sintomas);
                     if(sintomas.contains(si)){
                         peso++;
                     }
                 }
                 for(String sg : sig){
-                    System.out.println(signos);
                     if(signos.contains(sg)){
                         peso++;
                     }
                 }
-                System.out.println(peso);
-                if(peso>0)
+                if(peso>0){
+                    peso = (int)(100*peso)/(signos.size()+sintomas.size());
+                    while(treeMap.containsKey(peso))peso++;
                     treeMap.put(peso, rs.getString(2) + ";" + trat);
+                }
                 else
                     treeMap.put(peso, "no encontrado");
             }
