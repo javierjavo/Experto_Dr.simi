@@ -31,7 +31,7 @@ public class client extends UnicastRemoteObject implements ClientI
 
     @Override
     public List<String> busqueda_local(List<String> sintomas, List<String> signos, String tratamiento) throws RemoteException {
-        List<String> enfermedades = new ArrayList<>();
+                List<String> enfermedades = new ArrayList<>();
         Map<Integer, String> treeMap = new TreeMap<>();
         try {
             //hago la busqueda
@@ -39,36 +39,36 @@ public class client extends UnicastRemoteObject implements ClientI
             ResultSet rs = con.GetConnection().prepareStatement(sql).executeQuery();
             while(rs.next()){
                 int peso=0;
-                String sin[] = rs.getString(3).split(".");
-                String sig[] = rs.getString(4).split(".");
+                String sin[] = rs.getString(3).split(":");
+                String sig[] = rs.getString(4).split(":");
                 String trat = rs.getString(5);
                 
                 for(String si : sin){
-                    System.out.println(sintomas);
                     if(sintomas.contains(si)){
                         peso++;
                     }
                 }
                 for(String sg : sig){
-                    System.out.println(signos);
                     if(signos.contains(sg)){
                         peso++;
                     }
                 }
                 System.out.println(peso);
-                if(peso>0)
-                    treeMap.put(peso, rs.getString(2));
+                if(peso>0){
+                    peso = (int)(100*peso)/(signos.size()+sintomas.size());
+                    while(treeMap.containsKey(peso))peso++;
+                    treeMap.put(peso, rs.getString(2) + ";" + trat);
+                }
                 else
                     treeMap.put(peso, "no encontrado");
             }
             Iterator<Integer> it = treeMap.keySet().iterator();
             while(it.hasNext()){
               Integer key = it.next();
-              System.out.println("Clave: " + key + " -> Valor: " + treeMap.get(key));
               enfermedades.add(treeMap.get(key));
             }
             Collections.reverse(enfermedades);
-           
+            //ahora presento los datos al cliente solisitante
         } catch (SQLException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
