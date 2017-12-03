@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2017 a las 23:41:59
+-- Tiempo de generación: 03-12-2017 a las 17:58:22
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.11
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `experto`
 --
+CREATE DATABASE IF NOT EXISTS `experto` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `experto`;
 
 -- --------------------------------------------------------
 
@@ -41,11 +43,7 @@ CREATE TABLE `enfermedades` (
 --
 
 INSERT INTO `enfermedades` (`id`, `enfermedad`, `sintomas`, `signos`, `tratamiento`) VALUES
-(1, 'prueba', 'llanto', '', ''),
-(2, 'prueba2', '', 'uñas largas', ''),
-(3, 'prueba3', 'dolor de cabeza', 'salpullido', ''),
-(4, 'pruebaTrat', 'dolor de panza', 'uñas largas', 'esto es una prueba'),
-(5, 'Gripe aviar', 'dolor de cabeza:mocos', 'nariz raspoza:manos sudorozas', 'Tomar paracetamol');
+(1, 'prueba', 'llanto:mucha caca:penejes:asd', 'llanto:mucha caca:penejes', 'kk');
 
 -- --------------------------------------------------------
 
@@ -63,11 +61,7 @@ CREATE TABLE `signos` (
 --
 
 INSERT INTO `signos` (`id`, `signos`) VALUES
-(1, 'uñas largas'),
-(2, 'salpullido'),
-(6, 'nariz raspoza'),
-(7, 'manchas'),
-(8, 'manos sudorozas');
+(1, 'signo prueba');
 
 -- --------------------------------------------------------
 
@@ -85,31 +79,9 @@ CREATE TABLE `sintomas` (
 --
 
 INSERT INTO `sintomas` (`id`, `sintoma`) VALUES
-(1, 'llanto'),
-(2, 'dolor de cabeza'),
-(3, 'dolor de panza'),
-(7, 'mocos'),
-(8, 'dolor de pies'),
-(9, 'dolor de espalda');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tratamientos`
---
-
-CREATE TABLE `tratamientos` (
-  `id` int(11) NOT NULL,
-  `tratamientos` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tratamientos`
---
-
-INSERT INTO `tratamientos` (`id`, `tratamientos`) VALUES
-(1, 'esto es una prueba'),
-(2, 'Tomar paracetamol');
+(1, 'asd'),
+(2, 'llanto'),
+(3, 'holis');
 
 --
 -- Índices para tablas volcadas
@@ -137,12 +109,6 @@ ALTER TABLE `sintomas`
   ADD UNIQUE KEY `id` (`id`);
 
 --
--- Indices de la tabla `tratamientos`
---
-ALTER TABLE `tratamientos`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -150,25 +116,19 @@ ALTER TABLE `tratamientos`
 -- AUTO_INCREMENT de la tabla `enfermedades`
 --
 ALTER TABLE `enfermedades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `signos`
 --
 ALTER TABLE `signos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `sintomas`
 --
 ALTER TABLE `sintomas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `tratamientos`
---
-ALTER TABLE `tratamientos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
